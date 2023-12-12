@@ -4,53 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 import openai
-from django.views.decorators.csrf import csrf_exempt
-
 
 openai.api_key = env_config('YOUR_API_KEY')
-from django.middleware.csrf import get_token
 
-
-#
-# class ChatView(APIView):
-#     def post(self, request, *args, **kwargs):
-#         data = {'result': 'Error', 'message': "Something went wrong, please try again", "redirect": False, "data": None}
-#
-#         input_text = request.data.get("input")
-#
-#         client = OpenAI(api_key=env_config('YOUR_API_KEY'))
-#
-#         response = client.Completion.create(
-#             engine="text-davinci-003",
-#             prompt=input_text,
-#             max_tokens=1000
-#         )
-#
-#         generated_text = response['choices'][0]['text']
-#
-#         data.update({
-#             'result': "Success",
-#             'message': "ChatGPT has generated this text",
-#             'data': generated_text
-#         })
-#         print(generated_text)
-#         return Response(data, status=status.HTTP_200_OK)
-
-
-# def generate_response(text):
-#     response = openai.Completion.create(
-#         promt=text,
-#         engine='text-davinci-003',
-#         max_tokens=100,
-#         temperature=0.5,
-#         n=1,
-#         stop=None,
-#         timeout=15,
-#     )
-#     if response and response.choices:
-#         return response.choices[0].text.strip()
-#     else:
-#         return None
 
 class ChatView(APIView):
     permission_classes = [AllowAny]
